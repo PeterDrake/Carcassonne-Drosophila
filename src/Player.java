@@ -7,5 +7,7 @@ public class Player {
 		return score;
 	}
 	
-	
+	public void addPointsToScore(int points){
+		score += points;
+	}
 }
