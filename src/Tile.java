@@ -47,6 +47,34 @@ public class Tile {
 	public boolean hasMeeple() {
 		return hasMeeple;
 	}
+	public String sideToString(int side){	
+		switch(side){
+		case FIELD:
+			return"field";
+		case ROAD:
+			return"road";
+		case CASTLE:
+			return "castle";
+		case XROAD:
+			return"xroad";
+		case  CLOISTER:
+			return"cloister";
+		case SHIELD_CASTLE:
+			return"castle with shield";
+		default:
+			System.err.print("incorrect side type");
+			return null;
+		}
+	}
+	//returns each side of the tile in order of N,E,S,W and C;
+	public String toString(){
+		String str="N: "+sideToString(side[0])+" ";
+		str+="E: "+sideToString(side[1])+" ";
+		str+="S: "+sideToString(side[2])+" ";
+		str+="W: "+sideToString(side[3])+" ";
+		str+="C: "+sideToString(side[4])+" ";
+		return str;
+		}
+	}
 	
-	
-}
+
