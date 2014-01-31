@@ -5,13 +5,14 @@ public class Player {
 	public Player() {
 		name = "";
 	}
-	
-	public Player(String newName) {
-		name = newName;
-	}
 
-	public void setName(String newName) {
+	public boolean setName(String newName) {
+		// TODO "isEmpty()" should be changed to check whether it's whitespace instead of empty
+		if(newName.isEmpty()) {
+			return false;
+		}
 		name = newName;
+		return true;
 	}
 
 	public String getName() {
