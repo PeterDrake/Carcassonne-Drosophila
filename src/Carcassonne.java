@@ -1,5 +1,6 @@
 public class Carcassonne {
 		private static Board board;
+	
 	public static void main(String[] args) {
 		System.out.println("Time flies like an arrow, fruit flies like a banana.");
 		Tile initialTile=new Tile(Tile.CASTLE,Tile.ROAD,Tile.FIELD,Tile.ROAD,Tile.ROAD);
