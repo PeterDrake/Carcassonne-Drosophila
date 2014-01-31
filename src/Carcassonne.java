@@ -12,13 +12,13 @@ public class Carcassonne {
 	}
 	
 	public Carcassonne() {
-		boolean notValidName;
+		boolean validName;
 		player1 = new Player();
 						
 		do {
 			System.out.println("Please enter the name of player 1:");
-			notValidName = player1.setName(sc.nextLine());
-		} while(notValidName);
+			validName = player1.setName(sc.nextLine());
+		} while(!validName);
 		
 		System.out.println("Only one player right now? Remember, games are better with friends!");
 		System.out.println("Oh well, have fun " + player1.getName());
