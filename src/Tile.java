@@ -48,5 +48,13 @@ public class Tile {
 		return hasMeeple;
 	}
 	
+	public String toString(){
+		String result = "" ;
+		for (int i =0; i < 5; i++){
+			result += side[i] + " ";
+		}
+		return result;
+	}
+	
 	
 }
