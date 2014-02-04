@@ -22,19 +22,19 @@ public class Tile {
 	}
 
 	public int getNorth() {
-		return side[0];
+		return side[orientation + 0];
 	}
 
 	public int getEast() {
-		return side[1];
+		return side[(orientation +1 ) % 4];
 	}
 
 	public int getSouth() {
-		return side[2];
+		return side[(orientation + 2) %4];
 	}
 
 	public int getWest() {
-		return side[3];
+		return side[(orientation + 3) %4];
 	}
 
 	public int getCenter() {
@@ -70,6 +70,11 @@ public class Tile {
 			System.err.print("incorrect side type");
 			return null;
 		}
+	}
+	
+	//rotates the tile by one
+	protected void rotate(){
+		orientation = (orientation + 3) % 4;
 	}
 
 	// returns each side of the tile in order of N,E,S,W and C;
