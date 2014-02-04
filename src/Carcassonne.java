@@ -5,10 +5,15 @@ import java.util.Scanner;
 public class Carcassonne {
 	private static Board board;
 
+
 	private Tile[] tiles;
 	private Tile[] tempTiles;
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
+
+
+	private Player player;
+
 
 	public static void main(String[] args) {
 		System.out.println("Time flies like an arrow, fruit flies like a banana.");
@@ -26,7 +31,12 @@ public class Carcassonne {
 	
 	public Carcassonne(){
 		tiles=setUpTiles();
-		
+		player = new Player();
+	}
+	
+		// method to pass along score to the GUI
+	public int getScore() {
+		return player.getScore();
 	}
 	
 	/*
@@ -55,7 +65,6 @@ public class Carcassonne {
 	
 	protected Tile[] getTiles(){
 		return tiles;
-
 
 	}
 
