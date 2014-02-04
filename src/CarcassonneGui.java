@@ -10,8 +10,12 @@ public class CarcassonneGui {
 		scorePanel = new ScorePanel(this);
 		boardPanel = new BoardPanel(this);
 		game = new Carcassonne();
-
 	}
+	//Returns the Board of the current game.
+	public Board getBoard() {
+		return game.getBoard();
+	}
+	
 	//method to pass along the game's score to the ScorePanel
 	public int getScore() {
 		return game.getScore();
