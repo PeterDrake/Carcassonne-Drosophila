@@ -3,10 +3,12 @@ import javax.swing.*;
 
 public class CarcassonneGui {
 	private ScorePanel scorePanel;
+	private BoardPanel boardPanel;
 	private Carcassonne game;
 
 	public CarcassonneGui() {
 		scorePanel = new ScorePanel(this);
+		boardPanel = new BoardPanel(this);
 		game = new Carcassonne();
 
 	}
@@ -17,6 +19,10 @@ public class CarcassonneGui {
 
 	public ScorePanel getScorePanel() {
 		return scorePanel;
+	}
+	
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
 	}
 
 	public void run() {

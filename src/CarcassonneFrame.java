@@ -6,6 +6,7 @@ public class CarcassonneFrame extends JFrame {
 
 	public CarcassonneFrame(CarcassonneGui gui) {
 		this.gui = gui;
+		add(gui.getBoardPanel());
 		add(gui.getScorePanel());
 		pack();
 	}

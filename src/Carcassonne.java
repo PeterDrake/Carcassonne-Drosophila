@@ -22,7 +22,6 @@ public class Carcassonne {
 		board.placeTile(initialTile, 72, 72);
 		System.out.println("you have placed the tile with characteristics:"
 				+ board.getTile(72, 72));
-
 	}
 
 }
