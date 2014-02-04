@@ -65,10 +65,13 @@ public class Carcassonne {
 	}
 	
 	public boolean isValidMove(int x, int y, Tile toPlace)
-	{
+	{		
 		boolean bordering = false;
-		// if the input is outside of the board		
+		// if the input is outside of the board				
 		if(x < 0 || y < 0 || x > board.MAX_BOARD_SIZE - 1 || y > board.MAX_BOARD_SIZE - 1) return false;
+		// a tile is already there
+		if(board.getTile(x, y) != null) return false;
+		// a bordering tile has a conflicting side
 		if(y < board.MAX_BOARD_SIZE - 1 && board.getTile(x, y + 1) != null)
 		{
 			bordering = true;
@@ -89,7 +92,7 @@ public class Carcassonne {
 			bordering = true;
 			if(board.getTile(x - 1, y).getEast() != toPlace.getWest()) return false;
 		}
-		
+		// it's not bordering anything!
 		return bordering;
 	}
 	
