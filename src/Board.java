@@ -16,4 +16,36 @@ public class Board {
 	public Tile getTile(int x, int y) {
 		return table[x][y];
 	}
+	
+	public boolean isValidMove(int x, int y, Tile toPlace)
+	{		
+		boolean bordering = false;
+		// if the input is outside of the board				
+		if(x < 0 || y < 0 || x > MAX_BOARD_SIZE - 1 || y > MAX_BOARD_SIZE - 1) return false;
+		// a tile is already there
+		if(getTile(x, y) != null) return false;
+		// a bordering tile has a conflicting side
+		if(y < MAX_BOARD_SIZE - 1 && getTile(x, y + 1) != null)
+		{
+			bordering = true;
+			if(getTile(x, y + 1).getSouth() != toPlace.getNorth()) return false;
+		}
+		if(x < MAX_BOARD_SIZE - 1 &&  getTile(x + 1, y) != null)
+		{
+			bordering = true;
+			if(getTile(x + 1, y).getWest() != toPlace.getEast()) return false;
+		}
+		if(y > 0 && getTile(x, y - 1) != null)
+		{
+			bordering = true;
+			if(getTile(x, y - 1).getNorth() != toPlace.getSouth()) return false;
+		}
+		if(x > 0 && getTile(x - 1, y) != null)
+		{
+			bordering = true;
+			if(getTile(x - 1, y).getEast() != toPlace.getWest()) return false;
+		}
+		// it's not bordering anything!
+		return bordering;
+	}
 }
