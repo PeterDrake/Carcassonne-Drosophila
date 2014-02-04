@@ -8,6 +8,7 @@ public class Carcassonne {
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
 	private Player player; // Eventually becomes an array of players
+	private int tilesLeft; 
 	
 	private Scanner sc = new Scanner(System.in);
 
@@ -42,6 +43,11 @@ public class Carcassonne {
 		board.placeTile(initialTile, 72, 72);
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
+		
+		tilesLeft = TILES_IN_GAME; 
+		int tileNumber = (int) Math.random() * tilesLeft;
+		
+		
 	}
 
 	// method to pass along score to the GUI
