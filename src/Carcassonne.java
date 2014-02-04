@@ -41,6 +41,13 @@ public class Carcassonne {
 		board.placeTile(initialTile, 72, 72);
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
+		System.out.println("Do you want to place a meeple on this tile?");
+		String response=sc.nextLine();
+		if(response.equals("y")||response.equals("yes")){
+			board.placeMeeple(72, 72, 0);
+			System.out.println("you have placed the tile with characteristics: "
+					+ board.getTile(72, 72));
+		}
 	}
 
 	// method to pass along score to the GUI

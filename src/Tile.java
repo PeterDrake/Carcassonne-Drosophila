@@ -96,6 +96,8 @@ public class Tile {
 		str += "S: " + sideToString(side[2]) + " ";
 		str += "W: " + sideToString(side[3]) + " ";
 		str += "C: " + sideToString(side[4]) + " ";
+		str += "Has meeple: " + hasMeeple + " ";
+		str += "belonging to " + meeplePlayer + " ";
 		return str;
 	}
 }
