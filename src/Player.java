@@ -1,6 +1,7 @@
 public class Player {
 
 	private String name;
+	private int score;
 
 	public Player() {
 		name = "";
@@ -18,5 +19,14 @@ public class Player {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	// adds the given number of points to the player's score
+	public void addPointsToScore(int points) {
+		score += points;
 	}
 }
