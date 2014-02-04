@@ -3,45 +3,54 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Carcassonne {
-	private static Board board;
-
-
 	private Tile[] tiles;
 	private Tile[] tempTiles;
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
+	private Player player; // Eventually becomes an array of players
+	
+	private Scanner sc = new Scanner(System.in);
 
-
-	private Player player;
-
+	private static Board board;
 
 	public static void main(String[] args) {
-		System.out.println("Time flies like an arrow, fruit flies like a banana.");
-		
-		// currently places the initial tile and prints the attributes of that tile.
-		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
-		Tile.ROAD, Tile.ROAD);
-		board = new Board();
-		board.placeTile(initialTile, 72, 72);
-		System.out.println("you have placed the tile with characteristics:"
-		+ board.getTile(72, 72));
 		new Carcassonne();
 	}
-	
-	
-	public Carcassonne(){
+
+	public Carcassonne() {
 		tiles=setUpTiles();
 		player = new Player();
-	}
+
+		// Part of game that deals with players
+		boolean validName;
+		player = new Player(); // TODO it will be trivial to let people input a
+								// variable number of player names
+		do {
+			System.out.println("Please enter the name of player 1:");
+			validName = player.setName(sc.nextLine());
+		} while (!validName);
+		System.out
+				.println("Only one player right now? Remember, games are better with friends!");
+		System.out.println("Oh well, have fun " + player.getName());
 	
-		// method to pass along score to the GUI
+
+		// Part of game that deals with tiles
+		// currently places the initial tile and prints the attributes of that tile.
+		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
+				Tile.ROAD, Tile.ROAD);
+		board = new Board();
+		board.placeTile(initialTile, 72, 72);
+		System.out.println("you have placed the tile with characteristics: "
+				+ board.getTile(72, 72));
+	}
+
+	// method to pass along score to the GUI
 	public int getScore() {
 		return player.getScore();
 	}
 	
-	/*
-	 * Sets up the initial tile distribution and returns it as an array of tiles.
-	 */
+	
+	//Sets up the initial tile distribution and returns it as an array of tiles.
 	private Tile[] setUpTiles(){
 		try {
 			myScanner = new Scanner(new File("tileDist.txt"));
