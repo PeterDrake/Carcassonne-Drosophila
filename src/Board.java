@@ -1,13 +1,18 @@
-
 public class Board {
 	Tile[][] table;
-	public Board(){
-		table= new Tile[143][143];
+
+	// constructor for Board, just sets up the grid array
+	public Board() {
+		table = new Tile[143][143];
 	}
-	public void placeTile(Tile tile, int x, int y){
-		table[x][y]=tile;
+
+	// places the given tile at the given coordinates
+	public void placeTile(Tile tile, int x, int y) {
+		table[x][y] = tile;
 	}
-	public Tile getTile(int x, int y){
+
+	// gets tile from the given coordinates
+	public Tile getTile(int x, int y) {
 		return table[x][y];
 	}
 }
