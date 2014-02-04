@@ -1,9 +1,10 @@
 public class Board {
-	Tile[][] table;
+	private Tile[][] table;
+	public static final int MAX_BOARD_SIZE = 143;
 
 	// constructor for Board, just sets up the grid array
 	public Board() {
-		table = new Tile[143][143];
+		table = new Tile[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	}
 
 	// places the given tile at the given coordinates

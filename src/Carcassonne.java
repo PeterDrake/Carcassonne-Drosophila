@@ -45,11 +45,54 @@ public class Carcassonne {
 				+ board.getTile(72, 72));
 		
 		tilesLeft = TILES_IN_GAME; 
-		int tileNumber = (int) Math.random() * tilesLeft;
+		int tileNumber = (int) (Math.random() * tilesLeft);
+		System.out.println(tileNumber);
+		Tile tileInHand = tiles[tileNumber];
+		tilesLeft--;
+		tiles[tileNumber] = tiles[tilesLeft];
 		
+		System.out.println("you have tile " + tileInHand + " in your hand.");
+		int tempX;
+		int tempY;
+		do
+		{
+			System.out.println("Please place the tile.");			
+			tempX = Integer.parseInt(sc.nextLine());
+			tempY = Integer.parseInt(sc.nextLine());
+		} while (!isValidMove(tempX, tempY, tileInHand));
 		
+		board.placeTile(tileInHand, tempX, tempY);
 	}
-
+	
+	public boolean isValidMove(int x, int y, Tile toPlace)
+	{
+		boolean bordering = false;
+		// if the input is outside of the board		
+		if(x < 0 || y < 0 || x > board.MAX_BOARD_SIZE - 1 || y > board.MAX_BOARD_SIZE - 1) return false;
+		if(y < board.MAX_BOARD_SIZE - 1 && board.getTile(x, y + 1) != null)
+		{
+			bordering = true;
+			if(board.getTile(x, y + 1).getSouth() != toPlace.getNorth()) return false;
+		}
+		if(x < board.MAX_BOARD_SIZE - 1 &&  board.getTile(x + 1, y) != null)
+		{
+			bordering = true;
+			if(board.getTile(x + 1, y).getWest() != toPlace.getEast()) return false;
+		}
+		if(y > 0 && board.getTile(x, y - 1) != null)
+		{
+			bordering = true;
+			if(board.getTile(x, y - 1).getNorth() != toPlace.getSouth()) return false;
+		}
+		if(x > 0 && board.getTile(x - 1, y) != null)
+		{
+			bordering = true;
+			if(board.getTile(x - 1, y).getEast() != toPlace.getWest()) return false;
+		}
+		
+		return bordering;
+	}
+	
 	// method to pass along score to the GUI
 	public int getScore() {
 		return player.getScore();
