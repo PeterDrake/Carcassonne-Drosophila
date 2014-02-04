@@ -20,7 +20,7 @@ public class Carcassonne {
 		
 		// currently places the initial tile and prints the attributes of that tile.
 		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
-		Tile.ROAD, Tile.ROAD);
+		Tile.ROAD, Tile.ROAD, "city1rwe.png");
 		board = new Board();
 		board.placeTile(initialTile, 72, 72);
 		System.out.println("you have placed the tile with characteristics:"
@@ -57,7 +57,8 @@ public class Carcassonne {
 	          int south = myScanner.nextInt();
 	          int west = myScanner.nextInt();
 	          int center = myScanner.nextInt();
-	          tempTiles[i] = new Tile(north, east, south, west, center);
+	          String fileName = myScanner.next();
+	          tempTiles[i] = new Tile(north, east, south, west, center, fileName);
 	          i++;
 	      }
 		return tempTiles;
