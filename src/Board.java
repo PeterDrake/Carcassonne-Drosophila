@@ -25,6 +25,7 @@ public class Board {
 	public boolean roadCompleted(){
 		Tile t = getTile(lastX, lastY);
 		boolean complete = false;
+		if(t.getCenter() == Tile.CASTLE || t.getCenter() == Tile.CLOISTER || t.getCenter()==Tile.XROAD || t.getCenter() == Tile.SHIELD_CASTLE){
 		if(t.getNorth() == Tile.ROAD && getTile(lastX, lastY-1) != null){
 			if(searchRoad(getTile(lastX, lastY-1), t, 2, lastX, lastY-1)){
 				complete = true;
@@ -42,13 +43,41 @@ public class Board {
 				complete = true;
 			}
 		}
+		} else {
+			int endsFound = 0;
+			//this may not be a good solution because it doesn't work for the last test
+			if(t.getNorth() == Tile.ROAD && getTile(lastX, lastY-1) != null){
+				if(searchRoad(getTile(lastX, lastY-1), t, 2, lastX, lastY-1)){
+					endsFound++;
+				}
+			}else if(t.getEast() == Tile.ROAD && getTile(lastX+1, lastY) != null){
+				if(searchRoad(getTile(lastX+1, lastY), t, 3, lastX+1, lastY)){
+					endsFound++;
+				}
+			}else if(t.getSouth() == Tile.ROAD && getTile(lastX, lastY+1) != null){
+				if(searchRoad(getTile(lastX, lastY+1), t, 0, lastX, lastY+1)){
+					endsFound++;
+				}
+			}else if(t.getWest() == Tile.ROAD && getTile(lastX-1, lastY) != null){
+				if(searchRoad(getTile(lastX-1, lastY), t, 1, lastX-1, lastY)){
+					endsFound++;
+				}
+			}
+			if(endsFound == 2){
+				complete = true;
+			}
+			
+		}
+		
+		
+		
 		return complete;
 	}
 	
 	//recursive helper method for searching for road completion
 	//from is which direction this tile was entered from - north 0, east 1, south 2, west 3
 	protected boolean searchRoad(Tile current, Tile original, int from, int x, int y){
-		if((current.getCenter() == Tile.CASTLE)||(current.getCenter() == Tile.CLOISTER)
+		if((current.getCenter() == Tile.CASTLE)||(current.getCenter() == Tile.SHIELD_CASTLE) || (current.getCenter() == Tile.CLOISTER)
 				||(current.getCenter() == Tile.XROAD)){
 			return true;
 		}else if(current == original){
