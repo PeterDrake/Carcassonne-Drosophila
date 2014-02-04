@@ -41,6 +41,15 @@ public class TileTest {
 		assertEquals(2, tile.getSouth());
 		assertEquals(3, tile.getWest());
 	}
+	
+	@Test
+	public void testAddMeeple(){
+		Tile tile = new Tile(0,1,2,3,0);
+		assertFalse(tile.hasMeeple());
+		tile.addMeeple(0);
+		assertTrue(tile.hasMeeple());
+		assertEquals(0, tile.getPlayer());
+	}
 
 	
 }

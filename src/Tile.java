@@ -8,6 +8,7 @@ public class Tile {
 	private int[] side;
 	private int orientation;
 	private boolean hasMeeple;
+	private int meeplePlayer;
 
 	// constructor for the Tile Class, takes in the attribute of each direction
 	// and the center.
@@ -19,6 +20,18 @@ public class Tile {
 		side[3] = west;
 		side[4] = center;
 		orientation = 0;
+	}
+	
+	// Adds a meeple to this tile belonging to a player.
+	public void addMeeple(int player){
+		hasMeeple=true;
+		meeplePlayer=player;
+	}
+	
+	
+	// Returns the number of the player who has a meeple on this tile.
+	public int getPlayer(){
+		return meeplePlayer;
 	}
 
 	public int getNorth() {
@@ -72,7 +85,6 @@ public class Tile {
 		}
 	}
 	
-	//rotates the tile by one
 	protected void rotate(){
 		orientation = (orientation + 3) % 4;
 	}

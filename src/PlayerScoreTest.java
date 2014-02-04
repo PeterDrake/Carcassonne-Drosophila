@@ -4,13 +4,13 @@ public class PlayerScoreTest {
 	
 	@Test
 	public void testGetScore(){
-		Player p = new Player();
+		Player p = new Player(0);
 		assertEquals(0, p.getScore());
 	}
 	
 	@Test
 	public void testAddPointsToScore(){
-		Player p = new Player();
+		Player p = new Player(0);
 		assertEquals(0, p.getScore());
 		p.addPointsToScore(5);
 		assertEquals(5, p.getScore());

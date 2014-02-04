@@ -19,11 +19,10 @@ public class Carcassonne {
 
 	public Carcassonne() {
 		tiles=setUpTiles();
-		player = new Player();
 
 		// Part of game that deals with players
 		boolean validName;
-		player = new Player(); // TODO it will be trivial to let people input a
+		player = new Player(0); // TODO it will be trivial to let people input a
 								// variable number of player names
 		do {
 			System.out.println("Please enter the name of player 1:");

@@ -14,10 +14,6 @@ public class CarcassonneTest {
 		tilesTest=carcassonne.getTiles();
 		
 		
-		for(int j =0; j<tilesTest.length; j++){
-			System.out.println(tilesTest[j]);
-		}
-		
 		assertEquals(0, tilesTest[0].getNorth());
 		assertEquals(0, tilesTest[0].getEast());
 		assertEquals(0, tilesTest[0].getSouth());

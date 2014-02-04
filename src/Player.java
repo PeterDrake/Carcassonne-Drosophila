@@ -2,9 +2,11 @@ public class Player {
 
 	private String name;
 	private int score;
+	private int playerNumber;
 
-	public Player() {
+	public Player(int playerNum) {
 		name = "";
+		playerNumber=playerNum;
 	}
 
 	public boolean setName(String newName) {
