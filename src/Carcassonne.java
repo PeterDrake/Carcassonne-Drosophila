@@ -1,15 +1,18 @@
 public class Carcassonne {
 
 	private Player player;
-	
+
 	public static void main(String[] args) {
-		System.out.println("Time flies like an arrow, fruit flies like a banana.");
+		System.out
+				.println("Time flies like an arrow, fruit flies like a banana.");
 	}
-	public Carcassonne(){
-		player= new Player(); 
+
+	public Carcassonne() {
+		player = new Player();
 	}
-	
-	public int getScore(){
+
+	// method to pass along score to the GUI
+	public int getScore() {
 		return player.getScore();
 	}
 

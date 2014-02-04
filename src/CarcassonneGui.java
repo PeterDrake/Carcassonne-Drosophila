@@ -7,10 +7,10 @@ public class CarcassonneGui {
 
 	public CarcassonneGui() {
 		scorePanel = new ScorePanel(this);
-		game= new Carcassonne(); 
+		game = new Carcassonne();
 
 	}
-
+	//method to pass along the game's score to the ScorePanel
 	public int getScore() {
 		return game.getScore();
 	}
@@ -19,7 +19,7 @@ public class CarcassonneGui {
 		return scorePanel;
 	}
 
-	public void run(){
+	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				JFrame frame = new CarcassonneFrame(CarcassonneGui.this);
@@ -29,6 +29,7 @@ public class CarcassonneGui {
 			}
 		});
 	}
+
 	public static void main(String[] args) {
 		new CarcassonneGui().run();
 	}
