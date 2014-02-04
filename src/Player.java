@@ -1,5 +1,5 @@
 public class Player {
-	
+
 	private String name;
 
 	public Player() {
@@ -7,11 +7,12 @@ public class Player {
 	}
 
 	public boolean setName(String newName) {
-		// TODO "isEmpty()" should be changed to check whether it's whitespace instead of empty
-		if(newName.isEmpty()) {
+		// Trims whitespace from inputed name
+		name = newName.trim();
+		// if string is whitespace, returns false and prompts for a valid name
+		if (name.isEmpty()) {
 			return false;
 		}
-		name = newName;
 		return true;
 	}
 
