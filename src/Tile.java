@@ -94,6 +94,15 @@ public class Tile {
 			return null;
 		}
 	}
+	
+	//rotates the tile by one
+	protected void rotate(){
+		int temp1=side[0];
+		side[0]=side[3];
+		side[3]=side[2];
+		side[2]=side[1];
+		side[1]=temp1;
+	}
 
 	// returns each side of the tile in order of N,E,S,W and C;
 	public String toString() {
