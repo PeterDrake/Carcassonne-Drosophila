@@ -1,71 +1,71 @@
-0 0 0 0 4
-0 0 0 0 4
-0 0 0 0 4
-0 0 0 0 4
-0 0 1 0 4
-0 0 1 0 4
-5 2 2 2 2
-2 2 0 2 2
-2 2 0 2 2
-2 2 0 2 2
-5 2 0 2 2
-2 2 1 2 2
-5 2 1 2 2
-5 2 1 2 2
-2 0 0 2 2
-2 0 0 2 2
-2 0 0 2 2
-5 0 0 2 2
-5 0 0 2 2
-2 1 1 2 2
-2 1 1 2 2
-2 1 1 2 2
-5 1 1 2 2
-5 1 1 2 2
-0 2 0 2 2
-0 5 0 2 2
-0 5 0 2 2
-2 0 0 2 0
-2 0 0 2 0
-2 0 2 0 0
-2 0 2 0 0
-2 0 2 0 0
-2 0 0 0 0
-2 0 0 0 0
-2 0 0 0 0
-2 0 0 0 0
-2 0 0 0 0
-2 0 1 1 0
-2 0 1 1 0
-2 0 1 1 0
-2 1 1 0 0
-2 1 1 0 0
-2 1 1 0 0
-2 1 1 1 3
-2 1 1 1 3
-2 1 1 1 3
-2 1 0 1 1
-2 1 0 1 1
-2 1 0 1 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-1 0 1 0 1
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 0 1 1 0
-0 1 1 1 3
-0 1 1 1 3
-0 1 1 1 3
-0 1 1 1 3
-1 1 1 1 3
+0 0 0 0 4 cloister.png
+0 0 0 0 4 cloister.png
+0 0 0 0 4 cloister.png
+0 0 0 0 4 cloister.png
+0 0 1 0 4 cloisterr.png
+0 0 1 0 4 cloisterr.png
+5 2 2 2 2 city4.png
+2 2 0 2 2 city3.png
+2 2 0 2 2 city3.png
+2 2 0 2 2 city3.png
+5 2 0 2 2 city3s.png
+2 2 1 2 2 city3r.png
+5 2 1 2 2 city3sr.png
+5 2 1 2 2 city3sr.png
+2 0 0 2 2 city2nw.png
+2 0 0 2 2 city2nw.png
+2 0 0 2 2 city2nw.png
+5 0 0 2 2 city2nws.png
+5 0 0 2 2 city2nws.png
+2 1 1 2 2 city2nwr.png
+2 1 1 2 2 city2nwr.png
+2 1 1 2 2 city2nwr.png
+5 1 1 2 2 city2nwsr.png
+5 1 1 2 2 city2nwsr.png
+0 2 0 2 2 city2we.png
+0 5 0 2 2 city2wes.png
+0 5 0 2 2 city2wes.png
+2 2 0 0 0 city11ne.png
+2 2 0 0 0 city11ne.png
+0 2 0 2 0 city11we.png
+0 2 0 2 0 city11we.png
+0 2 0 2 0 city11we.png
+2 0 0 0 0 city1.png
+2 0 0 0 0 city1.png
+2 0 0 0 0 city1.png
+2 0 0 0 0 city1.png
+2 0 0 0 0 city1.png
+2 0 1 1 0 city1rsw.png
+2 0 1 1 0 city1rsw.png
+2 0 1 1 0 city1rsw.png
+2 1 1 0 0 city1rse.png
+2 1 1 0 0 city1rse.png
+2 1 1 0 0 city1rse.png
+2 1 1 1 3 city1rswe.png
+2 1 1 1 3 city1rswe.png
+2 1 1 1 3 city1rswe.png
+2 1 0 1 1 city1rwe.png
+2 1 0 1 1 city1rwe.png
+2 1 0 1 1 city1rwe.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+1 0 1 0 1 road2ns.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 0 1 1 0 road2sw.png
+0 1 1 1 3 road3.png
+0 1 1 1 3 road3.png
+0 1 1 1 3 road3.png
+0 1 1 1 3 road3.png
+1 1 1 1 3 road4.png

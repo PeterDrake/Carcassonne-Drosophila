@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class Tile {
 	public static final int FIELD = 0;
 	public static final int ROAD = 1;
@@ -8,10 +10,27 @@ public class Tile {
 	private int[] side;
 	private int orientation;
 	private boolean hasMeeple;
+	private String fileName;
 
 	// constructor for the Tile Class, takes in the attribute of each direction
 	// and the center.
-	public Tile(int north, int east, int south, int west, int center) {
+	public Tile(int north, int east, int south, int west, int center, String fileName) {
+		side = new int[5];
+		side[0] = north;
+		side[1] = east;
+		side[2] = south;
+		side[3] = west;
+		side[4] = center;
+		this.fileName = fileName;
+		File file = new File(fileName);
+		if(!file.exists()) {
+			System.err.println("Tile Image filename does not exist.");
+		}
+		orientation = 0;
+	}
+	// overloaded constructor so we can <<<TEST>>> using the tile class without having a path to an image
+	public Tile(int north, int east, int south, int west, int center)
+	{
 		side = new int[5];
 		side[0] = north;
 		side[1] = east;
@@ -49,6 +68,10 @@ public class Tile {
 	// returns true if there is a meeple on this tile
 	public boolean hasMeeple() {
 		return hasMeeple;
+	}
+	
+	public String getFileName() {
+		return fileName;
 	}
 
 	// returns string version of the side attribute
