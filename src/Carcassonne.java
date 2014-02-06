@@ -8,14 +8,12 @@ public class Carcassonne {
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
 	private Player player; // Eventually becomes an array of players
+	private int tilesLeft; 
 	
 	private Scanner sc = new Scanner(System.in);
 
-	private static Board board;
 
-	public static void main(String[] args) {
-		new Carcassonne();
-	}
+	private static Board board;
 
 	public Carcassonne() {
 		tiles=setUpTiles();
@@ -33,28 +31,51 @@ public class Carcassonne {
 		System.out.println("Oh well, have fun " + player.getName());
 	
 
-		// Part of game that deals with tiles
-		// currently places the initial tile and prints the attributes of that tile.
+		//Creates the initial Board Tile and places it on the board.
 		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
-				Tile.ROAD, Tile.ROAD);
+				Tile.ROAD, Tile.ROAD, "city1rwe.png");
 		board = new Board();
 		board.placeTile(initialTile, 72, 72);
+		
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
-		System.out.println("Do you want to place a meeple on this tile?");
-		String response=sc.nextLine();
-		if(response.equals("y")||response.equals("yes")){
-			board.placeMeeple(72, 72, 0);
-			System.out.println("you have placed the tile with characteristics: "
-					+ board.getTile(72, 72));
-		}
-	}
+		
+		tilesLeft = TILES_IN_GAME; 
+		int tileNumber = (int) (Math.random() * tilesLeft);
+		System.out.println(tileNumber);
+		Tile tileInHand = tiles[tileNumber];
+		tilesLeft--;
+		tiles[tileNumber] = tiles[tilesLeft];
+		
+		System.out.println("you have tile " + tileInHand + " in your hand.");
+		int tempX =0;
+		int tempY =0;
+		do
+		{
+			System.out.println("Do you want to rotate the tile? Return r to rotate, or n to not rotate");
+			if(sc.nextLine().equals("r")){
+				tileInHand.rotate();
+				System.out.println("you have tile " + tileInHand + " in your hand.");
+				continue;
+			} 
+			System.out.println("Please place the tile.");			
+			tempX = Integer.parseInt(sc.nextLine());
+			tempY = Integer.parseInt(sc.nextLine());
+		} while (!board.isValidMove(tempX, tempY, tileInHand));
+		
+		System.out.println("Your tile was placed at: " + tempX + ", " + tempY);
+		
+		board.placeTile(tileInHand, tempX, tempY);
 
+	}
+	
+
+	
 	// method to pass along score to the GUI
 	public int getScore() {
 		return player.getScore();
 	}
-	
+
 	
 	//Sets up the initial tile distribution and returns it as an array of tiles.
 	private Tile[] setUpTiles(){
@@ -67,20 +88,29 @@ public class Carcassonne {
 		tempTiles = new Tile[TILES_IN_GAME];
 		int i = 0;
 		while (myScanner.hasNextInt()) {
-	          int north = myScanner.nextInt();
-	          int east = myScanner.nextInt();
-	          int south = myScanner.nextInt();
-	          int west = myScanner.nextInt();
-	          int center = myScanner.nextInt();
-	          tempTiles[i] = new Tile(north, east, south, west, center);
-	          i++;
-	      }
+			int north = myScanner.nextInt();
+			int east = myScanner.nextInt();
+			int south = myScanner.nextInt();
+			int west = myScanner.nextInt();
+			int center = myScanner.nextInt();
+			String fileName = myScanner.next();
+			tempTiles[i] = new Tile(north, east, south, west, center, fileName);
+			i++;
+		}
 		return tempTiles;
 	}
 	
+	public Board getBoard() {
+		return board;
+	}
+	
+	
 	protected Tile[] getTiles(){
 		return tiles;
-
+	}
+	
+	public static void main(String[] args) {
+		new Carcassonne();
 	}
 
 }

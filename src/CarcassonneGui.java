@@ -3,13 +3,19 @@ import javax.swing.*;
 
 public class CarcassonneGui {
 	private ScorePanel scorePanel;
+	private BoardPanel boardPanel;
 	private Carcassonne game;
 
 	public CarcassonneGui() {
 		scorePanel = new ScorePanel(this);
+		boardPanel = new BoardPanel(this);
 		game = new Carcassonne();
-
 	}
+	//Returns the Board of the current game.
+	public Board getBoard() {
+		return game.getBoard();
+	}
+	
 	//method to pass along the game's score to the ScorePanel
 	public int getScore() {
 		return game.getScore();
@@ -17,6 +23,10 @@ public class CarcassonneGui {
 
 	public ScorePanel getScorePanel() {
 		return scorePanel;
+	}
+	
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
 	}
 
 	public void run() {
