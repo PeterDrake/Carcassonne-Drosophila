@@ -41,19 +41,19 @@ public class Tile {
 	}
 
 	public int getNorth() {
-		return side[orientation + 0];
+		return side[0];
 	}
 
 	public int getEast() {
-		return side[(orientation +1 ) % 4];
+		return side[1];
 	}
 
 	public int getSouth() {
-		return side[(orientation + 2) %4];
+		return side[2];
 	}
 
 	public int getWest() {
-		return side[(orientation + 3) %4];
+		return side[3];
 	}
 
 	public int getCenter() {
@@ -97,7 +97,11 @@ public class Tile {
 	
 	//rotates the tile by one
 	protected void rotate(){
-		orientation = (orientation + 3) % 4;
+		int temp1=side[0];
+		side[0]=side[3];
+		side[3]=side[2];
+		side[2]=side[1];
+		side[1]=temp1;
 	}
 
 	// returns each side of the tile in order of N,E,S,W and C;

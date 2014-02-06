@@ -49,10 +49,16 @@ public class Carcassonne {
 		tiles[tileNumber] = tiles[tilesLeft];
 		
 		System.out.println("you have tile " + tileInHand + " in your hand.");
-		int tempX;
-		int tempY;
+		int tempX =0;
+		int tempY =0;
 		do
 		{
+			System.out.println("Do you want to rotate the tile? Return r to rotate, or n to not rotate");
+			if(sc.nextLine().equals("r")){
+				tileInHand.rotate();
+				System.out.println("you have tile " + tileInHand + " in your hand.");
+				continue;
+			} 
 			System.out.println("Please place the tile.");			
 			tempX = Integer.parseInt(sc.nextLine());
 			tempY = Integer.parseInt(sc.nextLine());
