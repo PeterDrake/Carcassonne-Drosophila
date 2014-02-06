@@ -1,6 +1,7 @@
 public class Board {
 	private Tile[][] table;
-	public static final int MAX_BOARD_SIZE = 143;
+	public final int MAX_BOARD_SIZE = 143;
+	public final int TABLE_MID = 72;
 
 	// constructor for Board, just sets up the grid array
 	public Board() {
@@ -47,5 +48,10 @@ public class Board {
 		}
 		// it's not bordering anything!
 		return bordering;
+
+	}
+	
+	public Tile[][] getTable() {
+		return table;
 	}
 }
