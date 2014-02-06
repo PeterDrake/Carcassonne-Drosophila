@@ -63,9 +63,16 @@ public class Carcassonne {
 			tempY = Integer.parseInt(sc.nextLine());
 		} while (!board.isValidMove(tempX, tempY, tileInHand));
 		
-		System.out.println("Your tile was placed at: " + tempX + ", " + tempY);
-		
 		board.placeTile(tileInHand, tempX, tempY);
+		
+		System.out.println("Do you want to place a follower on this tile? Return y to place one.");
+		if(sc.nextLine().equals("y")){
+			board.placeMeeple(tempX, tempY, 0);
+			System.out.println(board.getTile(tempX, tempY));
+		}
+		
+		
+		System.out.println("Your tile was placed at: " + tempX + ", " + tempY);
 
 	}
 	
