@@ -61,6 +61,8 @@ public class Carcassonne {
 			tempY = Integer.parseInt(sc.nextLine());
 		} while (!board.isValidMove(tempX, tempY, tileInHand));
 		
+		System.out.println("Your tile was placed at: " + tempX + ", " + tempY);
+		
 		board.placeTile(tileInHand, tempX, tempY);
 	}
 	
