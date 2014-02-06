@@ -36,7 +36,6 @@ public class BoardPanel extends JPanel {
 			for(int j = 0; j < board.TABLE_WIDTH; j++) {
 				currentTile = board.getTile(i, j);
 				if(currentTile != null) {
-					System.out.println("Hello?");
 					image = new ImageIcon(currentTile.getFileName()).getImage();
 					g.drawImage(image, (i - (board.TABLE_MID - 5)) * TILE_WIDTH, 
 							DEFAULT_HEIGHT - ((j - (board.TABLE_MID - 5)) * TILE_WIDTH), null);					
