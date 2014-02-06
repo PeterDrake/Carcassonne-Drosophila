@@ -54,6 +54,8 @@ public class Carcassonne {
 		{
 			System.out.println("Do you want to rotate the tile? Return r to rotate, or n to not rotate");
 			if(sc.nextLine().equals("r")){
+				tempX=0;
+				tempY=0;
 				tileInHand.rotate();
 				System.out.println("you have tile " + tileInHand + " in your hand.");
 				continue;
