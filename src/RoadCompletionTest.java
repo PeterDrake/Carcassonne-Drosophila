@@ -62,9 +62,9 @@ public class RoadCompletionTest {
 	public void testSelfLoop(){
 		//tests a loop made with two crossroads
 		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.XROAD), 3, 3);
-		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.XROAD), 3, 4);
-		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 4, 3);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
 		b.placeTile(new Tile(Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.FIELD), 4, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.XROAD), 4, 3);
 		assertTrue(b.roadCompleted());
 	}
 	
@@ -72,8 +72,8 @@ public class RoadCompletionTest {
 	public void testSelfLoop2(){
 		//tests a loop made out of corner pieces only
 		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD), 3, 3);
-		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD), 3, 4);
-		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 4, 3);
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD), 4, 3);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
 		b.placeTile(new Tile(Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.FIELD), 4, 4);
 		assertTrue(b.roadCompleted());
 	}
@@ -86,6 +86,16 @@ public class RoadCompletionTest {
 		b.placeTile(new Tile(Tile.ROAD, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE), 5, 5);
 		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
 		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.ROAD), 4, 4);
+		assertTrue(b.roadCompleted());
+	}
+	
+	@Test
+	public void testCrossroadConnectsTwoRoads(){
+		//crossroad completes two roads, but there is also an incomplete road
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.CLOISTER), 3, 3);
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.CLOISTER), 4, 4);
+		b.placeTile(new Tile(Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD), 3, 5);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.XROAD), 3, 4);
 		assertTrue(b.roadCompleted());
 	}
 }
