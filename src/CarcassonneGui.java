@@ -16,9 +16,9 @@ public class CarcassonneGui {
 		return game.getBoard();
 	}
 	
-	//method to pass along the game's score to the ScorePanel
-	public int getScore() {
-		return game.getScore();
+	//method to pass along the player
+	public Player[] getPlayers() {
+		return game.getPlayers();
 	}
 
 	public ScorePanel getScorePanel() {
