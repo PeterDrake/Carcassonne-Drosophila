@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -7,7 +9,7 @@ import javax.swing.JPanel;
  * BoardPanel is a panel attached to CarcassonneFrame that draws the board and a tile/tiles on it.
  *
  */
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel implements MouseListener{
 
 	private CarcassonneGui gui;
 	
@@ -22,6 +24,7 @@ public class BoardPanel extends JPanel {
 
 	public BoardPanel(CarcassonneGui gui) {
 		this.gui = gui;
+		addMouseListener(this);
 	}
 	
 	/**
@@ -40,11 +43,52 @@ public class BoardPanel extends JPanel {
 					g.drawImage(image, (i - (board.TABLE_MID - 5)) * TILE_WIDTH, 
 							DEFAULT_HEIGHT - ((j - (board.TABLE_MID - 5)) * TILE_WIDTH), null);					
 				}
+				g.setColor(Color.BLACK);
+				g.drawRect((i - (board.TABLE_MID - 5)) * TILE_WIDTH, 
+						DEFAULT_HEIGHT - ((j - (board.TABLE_MID - 5)) * TILE_WIDTH), TILE_WIDTH, TILE_WIDTH);
 			}
 		}
 	}
 	
 	public Dimension getPreferredSize() {
 		return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent mouse) {
+		// TODO Auto-generated method stub
+		int x = TILE_WIDTH * (mouse.getX() / TILE_WIDTH); 
+		int y = TILE_WIDTH * (mouse.getY() / TILE_WIDTH);
+		
+		int i = (x / TILE_WIDTH) + (board.TABLE_MID - 5);
+		int j = (y - DEFAULT_HEIGHT) / (-TILE_WIDTH) + (board.TABLE_MID - 5);
+		
+		gui.placeTile(i, j);
+		
+		System.out.println("You Clicked At: " + i + "|" + j);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

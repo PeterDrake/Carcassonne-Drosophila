@@ -9,6 +9,12 @@ public class Carcassonne {
 	private Scanner myScanner;
 	private Player player; // Eventually becomes an array of players
 	private int tilesLeft; 
+	private Tile tileInHand;
+	
+	public Tile getTileInHand()
+	{
+		return tileInHand;
+	}
 	
 	private Scanner sc = new Scanner(System.in);
 
@@ -22,6 +28,7 @@ public class Carcassonne {
 		boolean validName;
 		player = new Player(0); // TODO it will be trivial to let people input a
 								// variable number of player names
+
 		do {
 			System.out.println("Please enter the name of player 1:");
 			validName = player.setName(sc.nextLine());
@@ -39,10 +46,22 @@ public class Carcassonne {
 		
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
-		
+			
 		tilesLeft = TILES_IN_GAME; 
+	}
+	
+	public void drawTile()
+	{
 		int tileNumber = (int) (Math.random() * tilesLeft);
-		System.out.println(tileNumber);
+		tileInHand = tiles[tileNumber];
+		tilesLeft--;
+		tiles[tileNumber] = tiles[tilesLeft];
+		
+		System.out.println("you have tile " + tileInHand + " in your hand.");
+	}
+	
+	public void drawAndPlaceTile() {
+		int tileNumber = (int) (Math.random() * tilesLeft);
 		Tile tileInHand = tiles[tileNumber];
 		tilesLeft--;
 		tiles[tileNumber] = tiles[tilesLeft];
