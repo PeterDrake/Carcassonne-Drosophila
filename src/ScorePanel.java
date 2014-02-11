@@ -21,7 +21,13 @@ public class ScorePanel extends JPanel {
 
 	//displays player 1's score. can add other player's scores when multiple players added
 	public void paintComponent(Graphics g) {
-		g.drawString("Player 1 score: " + gui.getScore(), MESSAGE_X, MESSAGE_Y);
+		int i = 0;
+		for(Player p : gui.getPlayers()){
+			if(p != null){
+				g.drawString(p.getName() + "'s score: " + p.getScore(), MESSAGE_X, MESSAGE_Y + 10 * i );
+			}
+			i++;
+		}
 	}
 
 	public Dimension getPreferredSize() {
