@@ -7,7 +7,7 @@ public class Carcassonne {
 	private Tile[] tempTiles;
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
-	private Player player; // Eventually becomes an array of players
+	private Player[] players; // Eventually becomes an array of players
 	private int tilesLeft; 
 	
 	private Scanner sc = new Scanner(System.in);
@@ -20,15 +20,16 @@ public class Carcassonne {
 
 		// Part of game that deals with players
 		boolean validName;
-		player = new Player(0); // TODO it will be trivial to let people input a
+		players = new Player[5];
+		players[0] = new Player(0); // TODO it will be trivial to let people input a
 								// variable number of player names
 		do {
 			System.out.println("Please enter the name of player 1:");
-			validName = player.setName(sc.nextLine());
+			validName = players[0].setName(sc.nextLine());
 		} while (!validName);
 		System.out
 				.println("Only one player right now? Remember, games are better with friends!");
-		System.out.println("Oh well, have fun " + player.getName());
+		System.out.println("Oh well, have fun " + players[0].getName());
 	
 
 		//Creates the initial Board Tile and places it on the board.
@@ -80,9 +81,10 @@ public class Carcassonne {
 	
 
 	
-	// method to pass along score to the GUI
-	public int getScore() {
-		return player.getScore();
+
+	//passes along player to GUI
+	public Player[] getPlayers(){
+		return players;
 	}
 
 	
