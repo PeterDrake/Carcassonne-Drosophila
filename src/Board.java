@@ -10,14 +10,23 @@ public class Board {
 	// completion
 	private int lastX;
 	private int lastY;
+	
+	//the board needs to be able to access players to give them scores for completing roads
+	private Player[] players;
+	
 
 	private Tile[][] table;
 	public final int MAX_BOARD_SIZE = 143;
 	public final int TABLE_MID = 72;
 
 	// constructor for Board, just sets up the grid array
-	public Board() {
+	public Board(Player[] players) {
 		table = new Tile[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		this.players = players;
+	}
+	
+	public Player getPlayer(int player){
+		return players[player];
 	}
 
 	// places the given tile at the given coordinates
@@ -53,7 +62,7 @@ public class Board {
 
 	// this method returns true if there is at least one completed road
 	public boolean roadCompleted() {
-		Tile t = getTile(lastX, lastY);
+		Tile t = getTile(lastX, lastY); // the last placed tile
 		int endsFound = 0;
 		if (t.getNorth() == Tile.ROAD && getTile(lastX, lastY - 1) != null) {
 			if (searchRoad(getTile(lastX, lastY - 1), t, SOUTH, lastX,
@@ -119,48 +128,88 @@ public class Board {
 		}
 		return 0;
 	}
-
+	
 	//this method adds the score it calculates to the player who gets the points
 	public void scoreRoad() {
 		Tile t = getTile(lastX, lastY);
-		int[] scores = new int[4];// holds score for road going in each
-									// direction from the crossroad
+		//Case for crossroads
 		if (t.getCenter() == Tile.XROAD) {
 			if (t.getNorth() == Tile.ROAD) {
-				scores[0] = searchRoad(t, t, SOUTH, lastX, lastY + 1);
+				int score = searchRoad(t, t, SOUTH, lastX, lastY + 1);
+				int[] meepleTally = new int[5];
+				meepleOnCompletedRoad(meepleTally, t, t, SOUTH, lastX, lastY+1);
+				assignScore(score, meepleTally);
+				
 			}
 			if (t.getEast() == Tile.ROAD) {
-				scores[1] = searchRoad(t, t, WEST, lastX + 1, lastY);
+				int score = searchRoad(t, t, WEST, lastX + 1, lastY);
+				int[] meepleTally = new int[5];
+				meepleOnCompletedRoad(meepleTally, t, t, WEST, lastX + 1, lastY);
+				assignScore(score, meepleTally);
 			}
 			if (t.getSouth() == Tile.ROAD) {
-				scores[2] = searchRoad(t, t, NORTH, lastX, lastY - 1);
+				int score = searchRoad(t, t, NORTH, lastX, lastY - 1);
+				int[] meepleTally = new int[5];
+				meepleOnCompletedRoad(meepleTally, t, t, NORTH, lastX, lastY-1);
+				assignScore(score, meepleTally);
 			}
 			if (t.getWest() == Tile.ROAD) {
-				scores[3] = searchRoad(t, t, EAST, lastX - 1, lastY);
+				int score = searchRoad(t, t, EAST, lastX - 1, lastY);
+				int[] meepleTally = new int[5];
+				meepleOnCompletedRoad(meepleTally, t, t, EAST, lastX - 1, lastY);
+				assignScore(score, meepleTally);
 			}
-		} else {
-			int score = 0;
+		} else { // case for single completed roads 
+			int score = 1;
+			int[] meepleTally = new int[5];
 			if (roadCompleted()) {
-				if (t.getNorth() == Tile.ROAD) {
-					score += searchRoad(t, t, SOUTH, lastX, lastY + 1);
+				if (t.getNorth() == Tile.ROAD && getTile(lastX, lastY - 1) != null) {
+					meepleOnCompletedRoad(meepleTally,t, t, SOUTH, lastX, lastY - 1);
+					score += searchRoad(t, t, SOUTH, lastX, lastY - 1);
 				}
-				if (t.getEast() == Tile.ROAD) {
+				if (t.getEast() == Tile.ROAD && getTile(lastX + 1, lastY) != null) {
+					meepleOnCompletedRoad(meepleTally, t, t, WEST, lastX + 1, lastY);
 					score += searchRoad(t, t, WEST, lastX + 1, lastY);
 				}
-				if (t.getSouth() == Tile.ROAD) {
-					score += searchRoad(t, t, NORTH, lastX, lastY - 1);
+				if (t.getSouth() == Tile.ROAD && getTile(lastX, lastY + 1) != null) {
+					meepleOnCompletedRoad(meepleTally, t, t, NORTH, lastX, lastY + 1);
+					score += searchRoad(t, t, NORTH, lastX, lastY + 1);
 				}
-				if (t.getWest() == Tile.ROAD) {
+				if (t.getWest() == Tile.ROAD && getTile( lastX - 1, lastY) != null) {
+					meepleOnCompletedRoad(meepleTally, t, t, EAST, lastX - 1, lastY);
 					score += searchRoad(t, t, EAST, lastX - 1, lastY);
 				}
+				System.out.println(meepleTally[0]);
+				System.out.println(score);
+				assignScore(score, meepleTally);
 			}
 
 		}
 	}
+	
+	protected void assignScore(int score, int[] meepleTally){
+		int winningPlayer = 0;
+		int maxMeeple = meepleTally[0];
+		for(int i = 1; i < 5; i++){
+			if(meepleTally[i] > maxMeeple){
+				winningPlayer = i;
+				maxMeeple = meepleTally[i];
+			}
+		}
+		getPlayer(winningPlayer).addPointsToScore(score);
+	}
 
 	protected void meepleOnCompletedRoad(int[] players, Tile current, Tile original, int from, int x, int y) {
 		if(hasMeeple(x, y)){
-			
+			if(current.getCenter() == Tile.XROAD){
+				if(current.getMeeplePosition() == from){
+					players[meeplePlayer(x, y)] ++;
+				}
+			}else{
+				if(current.getTerrainAt(current.getMeeplePosition()) == Tile.ROAD){
+					players[meeplePlayer(x, y)] ++;
+				}
+			}
 		}
 		if ((current.getCenter() == Tile.CASTLE)
 				|| (current.getCenter() == Tile.SHIELD_CASTLE)
