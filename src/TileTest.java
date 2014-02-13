@@ -77,8 +77,9 @@ public class TileTest {
 	public void testAddMeeple(){
 		Tile tile = new Tile(0,1,2,3,0);
 		assertFalse(tile.hasMeeple());
-		tile.addMeeple(0);
+		tile.addMeeple(0, 8);
 		assertTrue(tile.hasMeeple());
+		assertEquals(8, tile.getMeeplePosition());
 		assertEquals(0, tile.getPlayer());
 	}
 

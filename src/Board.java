@@ -31,10 +31,10 @@ public class Board {
 	public Tile getTile(int x, int y) {
 		return table[x][y];
 	}
+	//Places a meeple for player playerNum on a specific tile.
+	public void placeMeeple(int x, int y, int playerNum, int quadrant){
+		table[x][y].addMeeple(playerNum, quadrant);
 
-	// Places a meeple for player playerNum on a specific tile.
-	public void placeMeeple(int x, int y, int playerNum) {
-		table[x][y].addMeeple(playerNum);
 	}
 
 	// Returns true if there is a meeple on a specific tile.
@@ -45,6 +45,10 @@ public class Board {
 	// Returns the player number of the owner of the meeple on a specific tile.
 	public int meeplePlayer(int x, int y) {
 		return table[x][y].getPlayer();
+	}
+	
+	public int getMeeplePosition(int x, int y){
+		return table[x][y].getMeeplePosition();
 	}
 
 	// this method returns true if there is at least one completed road
@@ -174,7 +178,7 @@ public class Board {
 			meepleOnCompletedRoad(players, getTile(x, y + 1), original, NORTH, x, y + 1);
 		} else if (current.getWest() == Tile.ROAD && from != WEST
 				&& getTile(x - 1, y) != null) {
-			meepleOnCompletedRoad(player, getTile(x - 1, y), original, EAST, x - 1, y);
+			meepleOnCompletedRoad(players, getTile(x - 1, y), original, EAST, x - 1, y);
 		}
 	}
 
