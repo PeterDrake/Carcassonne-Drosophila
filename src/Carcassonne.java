@@ -33,7 +33,7 @@ public class Carcassonne {
 	
 
 		//Creates the initial Board Tile and places it on the board.
-		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
+		Tile initialTile = new Tile(Tile.FIELD, Tile.CASTLE, Tile.FIELD, Tile.ROAD, Tile.FIELD,Tile.FIELD,Tile.FIELD,
 				Tile.ROAD, Tile.ROAD, "city1rwe.png");
 		board = new Board();
 		board.placeTile(initialTile, 72, 72);
@@ -89,6 +89,14 @@ public class Carcassonne {
 
 	
 	//Sets up the initial tile distribution and returns it as an array of tiles.
+	/**
+	 * Sets up the initial array of tiles from a text file tileDist.txt that contains the
+	 * initial tileset that is written in a line with integers representing in order;
+	 * North-West, North, North-East, East, South-East, South, South-West, West, Center
+	 * and finally the source of the image file for this tile.
+	 * 
+	 * @return
+	 */
 	private Tile[] setUpTiles(){
 		try {
 			myScanner = new Scanner(new File("tileDist.txt"));
@@ -99,13 +107,17 @@ public class Carcassonne {
 		tempTiles = new Tile[TILES_IN_GAME];
 		int i = 0;
 		while (myScanner.hasNextInt()) {
+			int north_west= myScanner.nextInt();
 			int north = myScanner.nextInt();
+			int north_east = myScanner.nextInt(); 
 			int east = myScanner.nextInt();
+			int south_east= myScanner.nextInt();
 			int south = myScanner.nextInt();
+			int south_west= myScanner.nextInt();
 			int west = myScanner.nextInt();
 			int center = myScanner.nextInt();
 			String fileName = myScanner.next();
-			tempTiles[i] = new Tile(north, east, south, west, center, fileName);
+			tempTiles[i] = new Tile(north_west,north, north_east , east, south_east, south, south_west, west, center, fileName);
 			i++;
 		}
 		return tempTiles;
