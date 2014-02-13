@@ -1,10 +1,10 @@
 public class Board {
 	
 	//these class constants are for road completion testing
-	private final int NORTH = 0;
-	private final int EAST = 1;
-	private final int SOUTH = 2;
-	private final int WEST = 3;
+	private final int NORTH = 1;
+	private final int EAST = 3;
+	private final int SOUTH = 5;
+	private final int WEST = 7;
 	
 	// these hold the location of the most recent tile placed, for road
 	// completion

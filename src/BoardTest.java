@@ -13,7 +13,7 @@ public class BoardTest {
 
 	@Test
 	public void initialTileTest() {
-		Tile initialTile = new Tile(Tile.CASTLE, Tile.ROAD, Tile.FIELD,
+		Tile initialTile = new Tile(Tile.FIELD, Tile.CASTLE, Tile.FIELD, Tile.ROAD, Tile.FIELD,Tile.FIELD,Tile.FIELD,
 				Tile.ROAD, Tile.ROAD, "city1rwe.png");
 		board.placeTile(initialTile, 72, 72);
 		assertEquals(initialTile, board.getTile(72, 72));
