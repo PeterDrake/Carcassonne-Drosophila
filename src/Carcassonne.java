@@ -47,7 +47,7 @@ public class Carcassonne {
 		
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
-			
+		
 		tilesLeft = TILES_IN_GAME; 
 	}
 	
@@ -100,13 +100,20 @@ public class Carcassonne {
 	
 
 	public boolean placeTile(int i, int j) {
-		if(board.isValidMove(i, j, tileInHand) && tilesLeft != 0)
+		while(true) {			
+			System.out.println("Do you want to rotate the tile? Return r to rotate, or n to not rotate");
+			if(sc.nextLine().equals("r")){
+				tileInHand.rotate();
+				System.out.println("You have tile " + tileInHand + " in your hand.");
+			} else break;
+		}
+		if(board.isValidMove(i, j, tileInHand) && !isGameOver())
 		{
 			System.out.println("Legal Move At: " + i + "|" + j);
 			board.placeTile(tileInHand, i, j);
 			drawTile();
 			return true;
-		} else if (tilesLeft != 0) {
+		} else if (!isGameOver()) {
 			System.out.println("Not Legal Move");			
 		} else System.out.println("Game is over!");
 		return false;
@@ -168,6 +175,10 @@ public class Carcassonne {
 
 	public int getTilesLeft() {
 		return tilesLeft;
+	}
+
+	public boolean isGameOver() {
+		return tilesLeft == 0;
 	}
 
 }
