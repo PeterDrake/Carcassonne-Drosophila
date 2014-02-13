@@ -42,8 +42,8 @@ public class Board {
 
 	
 	//Places a meeple for player playerNum on a specific tile.
-	public void placeMeeple(int x, int y, int playerNum){
-		table[x][y].addMeeple(playerNum);
+	public void placeMeeple(int x, int y, int playerNum, int quadrant){
+		table[x][y].addMeeple(playerNum, quadrant);
 	}
 	
 	// Returns true if there is a meeple on a specific tile.
@@ -54,6 +54,10 @@ public class Board {
 	// Returns the player number of the owner of the meeple on a specific tile.
 	public int meeplePlayer(int x, int y){
 		return table[x][y].getPlayer();
+	}
+	
+	public int getMeeplePosition(int x, int y){
+		return table[x][y].getMeeplePosition();
 	}
 
 

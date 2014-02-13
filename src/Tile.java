@@ -12,23 +12,31 @@ public class Tile {
 	private boolean hasMeeple;
 	private int meeplePlayer;
 	private String fileName;
-	
-	
+	private int meeplePosition;
+
 	/**
-	 * Our tile will have an array of 9 values for the things in each of the 9 quadrants.
-	 * This will look like:
-	 * North-West    North     North-East
-	 * West          Center    East
-	 * South-West    South     South-East
+	 * Our tile will have an array of 9 values for the things in each of the 9
+	 * quadrants. This will look like: 
+	 * North-West  North   North-East 
+	 * West        Center  East 
+	 * South-West  South   South-East
+	 * 
+	 * The numbering system for these directions looks like this:
+	 * 0   1   2
+	 * 7   8   3
+	 * 6   5   4
+	 * 
+	 * It is a spiral moving clockwise from the North-West corner.
 	 * 
 	 * These can be called by methods getNorthWest(), getNorth etc.
 	 * 
 	 */
 
-
 	// constructor for the Tile Class, takes in the attribute of each direction
 	// and the center.
-	public Tile(int north_west,int north, int north_east , int east, int south_east,int south,int south_west,int west, int center, String fileName) {
+	public Tile(int north_west, int north, int north_east, int east,
+			int south_east, int south, int south_west, int west, int center,
+			String fileName) {
 		quadrant = new int[9];
 		quadrant[0] = north_west;
 		quadrant[1] = north;
@@ -38,17 +46,19 @@ public class Tile {
 		quadrant[5] = south;
 		quadrant[6] = south_west;
 		quadrant[7] = west;
-		quadrant[8] = center; 
+		quadrant[8] = center;
 		this.fileName = fileName;
 		File file = new File(fileName);
-		if(!file.exists()) {
+		if (!file.exists()) {
 			System.err.println("Tile Image filename does not exist.");
 		}
 		orientation = 0;
+		meeplePosition = -1;
 	}
-	// overloaded constructor so we can <<<TEST>>> using the tile class without having a path to an image
-	public Tile(int north, int east, int south, int west, int center)
-	{
+
+	// overloaded constructor so we can <<<TEST>>> using the tile class without
+	// having a path to an image
+	public Tile(int north, int east, int south, int west, int center) {
 		quadrant = new int[9];
 		quadrant[1] = north;
 		quadrant[3] = east;
@@ -57,40 +67,47 @@ public class Tile {
 		quadrant[8] = center;
 		orientation = 0;
 	}
-	
+
 	// Adds a meeple to this tile belonging to a player.
-	public void addMeeple(int player){
-		hasMeeple=true;
-		meeplePlayer=player;
+	public void addMeeple(int player, int quadrant) {
+		meeplePosition = quadrant;
+		hasMeeple = true;
+		meeplePlayer = player;
 	}
-	
-	
+
 	// Returns the number of the player who has a meeple on this tile.
-	public int getPlayer(){
+	public int getPlayer() {
 		return meeplePlayer;
 	}
 
 	public int getNorth() {
 		return quadrant[1];
 	}
+
 	public int getNorthWest() {
 		return quadrant[0];
 	}
+
 	public int getNorthEast() {
 		return quadrant[2];
 	}
+
 	public int getEast() {
 		return quadrant[3];
 	}
+
 	public int getSouthEast() {
 		return quadrant[4];
 	}
+
 	public int getSouth() {
 		return quadrant[5];
 	}
+
 	public int getSouthWest() {
 		return quadrant[6];
 	}
+
 	public int getWest() {
 		return quadrant[7];
 	}
@@ -108,9 +125,13 @@ public class Tile {
 	public boolean hasMeeple() {
 		return hasMeeple;
 	}
-	
+
 	public String getFileName() {
 		return fileName;
+	}
+	
+	public int getMeeplePosition(){
+		return meeplePosition;
 	}
 
 	// returns string version of the side attribute
@@ -133,24 +154,23 @@ public class Tile {
 			return null;
 		}
 	}
-	
 
-	//rotates the tile by one
-	protected void rotate(){
-		int temp1=quadrant[6];
-		int temp2= quadrant[7];
-for(int i=7; i>0; i--){
-	int j =i+6;
-	quadrant[i]=quadrant[j%8]; 
-}
-		quadrant[0]=temp1; 
-		quadrant[1]=temp2;
+	// rotates the tile by one
+	protected void rotate() {
+		int temp1 = quadrant[6];
+		int temp2 = quadrant[7];
+		for (int i = 7; i > 0; i--) {
+			int j = i + 6;
+			quadrant[i] = quadrant[j % 8];
+		}
+		quadrant[0] = temp1;
+		quadrant[1] = temp2;
 	}
 
 	// returns each side of the tile in order of N,E,S,W and C;
 	public String toString() {
 		String str = "NW: " + sideToString(quadrant[0]) + " ";
-        str += "N: " + sideToString(quadrant[1]) + " ";
+		str += "N: " + sideToString(quadrant[1]) + " ";
 		str += "NE: " + sideToString(quadrant[2]) + " ";
 		str += "E: " + sideToString(quadrant[3]) + " ";
 		str += "SE: " + sideToString(quadrant[4]) + " ";
@@ -158,9 +178,11 @@ for(int i=7; i>0; i--){
 		str += "SW: " + sideToString(quadrant[6]) + " ";
 		str += "W: " + sideToString(quadrant[7]) + " ";
 		str += "C: " + sideToString(quadrant[8]) + " ";
-		if(hasMeeple){
-			str += "Has meeple: " + hasMeeple + " ";
-			str += "belonging to " + meeplePlayer + " ";
+		if (hasMeeple) {
+			str += "Meeple on quadrant " + meeplePosition;
+			str += " Meeple on feature "
+					+ sideToString(quadrant[meeplePosition]);
+			str += " belonging to " + meeplePlayer + " ";
 		}
 		return str;
 	}

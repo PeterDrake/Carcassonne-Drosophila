@@ -42,6 +42,7 @@ public class CarcassonneGui {
 		});
 		game.drawTile();
 		boardPanel.repaint();
+		scorePanel.repaint();
 	}
 
 	public static void main(String[] args) {
@@ -51,8 +52,15 @@ public class CarcassonneGui {
 	public void placeTile(int i, int j) {
 		if(game.placeTile(i, j)) {
 			boardPanel.repaint();
+
 			lastX= i;
 			lastY=j; 
+
+			scorePanel.repaint();
+
 		}
+	}
+	public boolean isGameOver() {
+		return game.isGameOver();
 	}
 }
