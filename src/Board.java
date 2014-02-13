@@ -26,6 +26,14 @@ public class Board {
 		lastX = x;
 		lastY = y;
 	}
+	
+	public int getLastX(){
+		return lastX;
+	}
+	
+	public int getLastY(){
+		return lastY;
+	}
 
 	// gets tile from the given coordinates
 	public Tile getTile(int x, int y) {

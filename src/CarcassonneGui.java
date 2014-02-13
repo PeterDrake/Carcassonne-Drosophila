@@ -5,6 +5,8 @@ public class CarcassonneGui {
 	private ScorePanel scorePanel;
 	private BoardPanel boardPanel;
 	private Carcassonne game;
+	private int lastX;
+	private int lastY;
 
 	public CarcassonneGui() {
 		scorePanel = new ScorePanel(this);
@@ -49,6 +51,8 @@ public class CarcassonneGui {
 	public void placeTile(int i, int j) {
 		if(game.placeTile(i, j)) {
 			boardPanel.repaint();
+			lastX= i;
+			lastY=j; 
 		}
 	}
 }
