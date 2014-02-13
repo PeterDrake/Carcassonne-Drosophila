@@ -35,7 +35,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 		AddFollowerAction addFollowerAction = new AddFollowerAction();
 		addFollower.addActionListener(addFollowerAction);
 		
-		JButton rotate = new JButton("Rotate tile");
+		JButton rotate = new JButton("Rotate tile (Clockwise)");
 		this.add(rotate);
 		RotateAction rotateAction = new RotateAction();
 		rotate.addActionListener(rotateAction);
