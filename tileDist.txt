@@ -2,8 +2,8 @@
 0 0 0 0 0 0 0 0 4 cloister.png
 0 0 0 0 0 0 0 0 4 cloister.png
 0 0 0 0 0 0 0 0 4 cloister.png
-0 0 0 0 0 1 0 0 4 cloister.png
-0 0 0 0 0 1 0 0 4 cloister.png
+0 0 0 0 0 1 0 0 4 cloisterr.png
+0 0 0 0 0 1 0 0 4 cloisterr.png
 5 2 2 2 2 2 2 2 2 city4.png
 2 2 2 2 0 0 0 2 2 city3.png
 2 2 2 2 0 0 0 2 2 city3.png

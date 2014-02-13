@@ -8,10 +8,16 @@ public class Carcassonne {
 	public static final int TILES_IN_GAME = 71;
 	private Scanner myScanner;
 	private Player[] players; // Eventually becomes an array of players
-	private int tilesLeft;
+	private int tilesLeft; 
+	private Tile tileInHand;
 	private int playerNum;
 	private boolean meeplePlaced;
-
+	
+	public Tile getTileInHand()
+	{
+		return tileInHand;
+	}
+	
 	private Scanner sc = new Scanner(System.in);
 
 	private static Board board;
@@ -43,10 +49,27 @@ public class Carcassonne {
 
 		System.out.println("you have placed the tile with characteristics: "
 				+ board.getTile(72, 72));
-
-		tilesLeft = TILES_IN_GAME;
+		
+		tilesLeft = TILES_IN_GAME; 
+	}
+	
+	public boolean setPlayerName(int playerIndex, String playerName)
+	{
+		return players[playerIndex].setName(playerName);
+	}
+	
+	public void drawTile()
+	{
 		int tileNumber = (int) (Math.random() * tilesLeft);
-		System.out.println(tileNumber);
+		tileInHand = tiles[tileNumber];
+		tilesLeft--;
+		tiles[tileNumber] = tiles[tilesLeft];
+		
+		System.out.println("you have tile " + tileInHand + " in your hand.");
+	}
+	
+	public void drawAndPlaceTile() {
+		int tileNumber = (int) (Math.random() * tilesLeft);
 		Tile tileInHand = tiles[tileNumber];
 		tilesLeft--;
 		tiles[tileNumber] = tiles[tilesLeft];
@@ -125,6 +148,27 @@ public class Carcassonne {
 		System.out.println("Your tile was placed at: " + tempX + ", " + tempY);
 
 	}
+	
+
+	public boolean placeTile(int i, int j) {
+		while(true) {			
+			System.out.println("Do you want to rotate the tile? Return r to rotate, or n to not rotate");
+			if(sc.nextLine().equals("r")){
+				tileInHand.rotate();
+				System.out.println("You have tile " + tileInHand + " in your hand.");
+			} else break;
+		}
+		if(board.isValidMove(i, j, tileInHand) && !isGameOver())
+		{
+			System.out.println("Legal Move At: " + i + "|" + j);
+			board.placeTile(tileInHand, i, j);
+			drawTile();
+			return true;
+		} else if (!isGameOver()) {
+			System.out.println("Not Legal Move");			
+		} else System.out.println("Game is over!");
+		return false;
+	}
 
 	// passes along player to GUI
 	public Player[] getPlayers() {
@@ -179,6 +223,14 @@ public class Carcassonne {
 
 	public static void main(String[] args) {
 		new Carcassonne();
+	}
+
+	public int getTilesLeft() {
+		return tilesLeft;
+	}
+
+	public boolean isGameOver() {
+		return tilesLeft == 0;
 	}
 
 }
