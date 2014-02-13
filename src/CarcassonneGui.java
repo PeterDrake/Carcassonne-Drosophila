@@ -48,6 +48,9 @@ public class CarcassonneGui {
 				frame.setTitle("Carcassonne");
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);				
+//				JFrame nameFrame = new NameFrame(CarcassonneGui.this);
+//				nameFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//				nameFrame.setVisible(true);
 			}
 		});
 		game.drawTile();
