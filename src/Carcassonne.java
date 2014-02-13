@@ -53,6 +53,11 @@ public class Carcassonne {
 		tilesLeft = TILES_IN_GAME; 
 	}
 	
+	public boolean setPlayerName(int playerIndex, String playerName)
+	{
+		return players[playerIndex].setName(playerName);
+	}
+	
 	public void drawTile()
 	{
 		int tileNumber = (int) (Math.random() * tilesLeft);

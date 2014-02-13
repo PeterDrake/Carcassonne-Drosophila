@@ -19,9 +19,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 	private CarcassonneGui gui;
 
 	private static final int DEFAULT_WIDTH = 900;
-	private static final int DEFAULT_HEIGHT = 900;
-	// Each Tile image is 90x90, so the height is the same as the width.
-	private final int TILE_WIDTH = 90;
+
+	private static final int DEFAULT_HEIGHT = 540;
+	//Each Tile image is 90x90, so the height is the same as the width.
+	public static final int TILE_WIDTH = 90;
 
 	private Board board;
 
@@ -110,6 +111,9 @@ public class BoardPanel extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		int x = TILE_WIDTH * (mouse.getX() / TILE_WIDTH);
 		int y = TILE_WIDTH * (mouse.getY() / TILE_WIDTH);
+
+		System.out.println("You clicked at pixels "+mouse.getX()+ "|" +mouse.getY());
+		System.out.println("You clicked at pixels "+x+ "|" +y);
 
 		int i = (x / TILE_WIDTH) + (board.TABLE_MID - 5);
 		int j = (y - DEFAULT_HEIGHT) / (-TILE_WIDTH) + (board.TABLE_MID - 5);

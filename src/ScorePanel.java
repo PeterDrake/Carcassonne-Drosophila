@@ -14,7 +14,7 @@ public class ScorePanel extends JPanel {
 
 	//arbitrary location and size, can be changed when the GUI is further along
 	public static final int MESSAGE_X = 75;
-	public static final int MESSAGE_Y = 100;
+	public static final int MESSAGE_Y = 45;
 	public static final int GAMEOVER_MESSAGE_X = 250;
 	public static final int GAMEOVER_MESSAGE_Y = 115;
 
@@ -36,6 +36,6 @@ public class ScorePanel extends JPanel {
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		return new Dimension(DEFAULT_WIDTH, gui.getBoardPanel().TILE_WIDTH);
 	}
 }
