@@ -11,6 +11,7 @@ public class CarcassonneFrame extends JFrame {
 		setLayout(new BorderLayout());
 		add(gui.getBoardPanel(), BorderLayout.NORTH);
 		add(gui.getScorePanel(), BorderLayout.SOUTH);
+		add(gui.getHandPanel(), BorderLayout.SOUTH);
 		pack();
 	}
 
