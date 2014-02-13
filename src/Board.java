@@ -1,11 +1,11 @@
 public class Board {
 
-	//these class constants are for road completion testing
+	// these class constants are for road completion testing
 	private final int NORTH = 1;
 	private final int EAST = 3;
 	private final int SOUTH = 5;
 	private final int WEST = 7;
-	
+
 	// these hold the location of the most recent tile placed, for road
 	// completion
 	private int lastX;
@@ -58,8 +58,7 @@ public class Board {
 			}
 		}
 		if (t.getEast() == Tile.ROAD && getTile(lastX + 1, lastY) != null) {
-			if (searchRoad(getTile(lastX + 1, lastY), t, WEST, lastX + 1,
-					lastY) > 0) {
+			if (searchRoad(getTile(lastX + 1, lastY), t, WEST, lastX + 1, lastY) > 0) {
 				endsFound++;
 			}
 		}
@@ -70,21 +69,20 @@ public class Board {
 			}
 		}
 		if (t.getWest() == Tile.ROAD && getTile(lastX - 1, lastY) != null) {
-			if (searchRoad(getTile(lastX - 1, lastY), t, EAST, lastX - 1,
-					lastY) > 0) {
+			if (searchRoad(getTile(lastX - 1, lastY), t, EAST, lastX - 1, lastY) > 0) {
 				endsFound++;
 			}
 		}
 		if (t.getCenter() == Tile.CASTLE || t.getCenter() == Tile.CLOISTER
-					|| t.getCenter() == Tile.XROAD
-					|| t.getCenter() == Tile.SHIELD_CASTLE) {
-			if(endsFound > 0){
+				|| t.getCenter() == Tile.XROAD
+				|| t.getCenter() == Tile.SHIELD_CASTLE) {
+			if (endsFound > 0) {
 				return true;
 			}
-			
-		}else{
-			if(endsFound == 2){
-					return true;
+
+		} else {
+			if (endsFound == 2) {
+				return true;
 			}
 		}
 		return false;
@@ -93,8 +91,7 @@ public class Board {
 	// recursive helper method for searching for road completion
 	// from is which direction this tile was entered from - north 0, east 1,
 	// south 2, west 3
-	protected int searchRoad(Tile current, Tile original, int from, int x,
-			int y) {
+	protected int searchRoad(Tile current, Tile original, int from, int x, int y) {
 		if ((current.getCenter() == Tile.CASTLE)
 				|| (current.getCenter() == Tile.SHIELD_CASTLE)
 				|| (current.getCenter() == Tile.CLOISTER)
@@ -119,46 +116,67 @@ public class Board {
 		return 0;
 	}
 
-		public int scoreRoad(){ 
-			Tile t = getTile(lastX, lastY);
-			int score = 0; 
-			if(roadCompleted()){
-				if(meepleOnCompletedRoad()){
-					//find out which player(s) has(ve) the most meeples on the completed road
-					//this method doesn't account for multiple players having meeples on different
-					// sides of the completed road TODO: make it work for only one player at a time 
-					if(t.getCenter() != Tile.XROAD){
-				if(t.getNorth() == Tile.ROAD){ 
+	//this method adds the score it calculates to the player who gets the points
+	public void scoreRoad() {
+		Tile t = getTile(lastX, lastY);
+		int[] scores = new int[4];// holds score for road going in each
+									// direction from the crossroad
+		if (t.getCenter() == Tile.XROAD) {
+			if (t.getNorth() == Tile.ROAD) {
+				scores[0] = searchRoad(t, t, SOUTH, lastX, lastY + 1);
+			}
+			if (t.getEast() == Tile.ROAD) {
+				scores[1] = searchRoad(t, t, WEST, lastX + 1, lastY);
+			}
+			if (t.getSouth() == Tile.ROAD) {
+				scores[2] = searchRoad(t, t, NORTH, lastX, lastY - 1);
+			}
+			if (t.getWest() == Tile.ROAD) {
+				scores[3] = searchRoad(t, t, EAST, lastX - 1, lastY);
+			}
+		} else {
+			int score = 0;
+			if (roadCompleted()) {
+				if (t.getNorth() == Tile.ROAD) {
 					score += searchRoad(t, t, SOUTH, lastX, lastY + 1);
 				}
-				if(t.getEast() == Tile.ROAD){
-					score += searchRoad(t,t, WEST, lastX + 1, lastY);
+				if (t.getEast() == Tile.ROAD) {
+					score += searchRoad(t, t, WEST, lastX + 1, lastY);
 				}
-				if(t.getSouth() == Tile.ROAD){
-					score += searchRoad(t,t, NORTH, lastX, lastY - 1); 
+				if (t.getSouth() == Tile.ROAD) {
+					score += searchRoad(t, t, NORTH, lastX, lastY - 1);
 				}
-				if(t.getWest() == Tile.ROAD){
-					score += searchRoad(t,t, EAST, lastX - 1, lastY); 
-				}}//put in other condition for crossroad so it only scores one road at a time.
+				if (t.getWest() == Tile.ROAD) {
+					score += searchRoad(t, t, EAST, lastX - 1, lastY);
+				}
 			}
-			}
-			
-			return score; 
+
 		}
-	
-	
-	
-	
-	
-	
-	
-	private boolean meepleOnCompletedRoad() {
-			Tile t = getTile(lastX, lastY);
-				// if this tile has meeple on the road then return true
-				// if not go to connected tiles and check road 
+	}
+
+	protected void meepleOnCompletedRoad(int[] players, Tile current, Tile original, int from, int x, int y) {
+		if(hasMeeple(x, y)){
 			
-			return false;
 		}
+		if ((current.getCenter() == Tile.CASTLE)
+				|| (current.getCenter() == Tile.SHIELD_CASTLE)
+				|| (current.getCenter() == Tile.CLOISTER)
+				|| (current.getCenter() == Tile.XROAD)) {
+		} else if (current == original) {
+		} else if (current.getNorth() == Tile.ROAD && from != NORTH
+				&& getTile(x, y - 1) != null) {
+			meepleOnCompletedRoad(players, getTile(x, y - 1), original, SOUTH, x, y - 1);
+		} else if (current.getEast() == Tile.ROAD && from != EAST
+				&& getTile(x + 1, y) != null) {
+			meepleOnCompletedRoad(players, getTile(x + 1, y), original, WEST, x + 1, y);
+		} else if (current.getSouth() == Tile.ROAD && from != SOUTH
+				&& getTile(x, y + 1) != null) {
+			meepleOnCompletedRoad(players, getTile(x, y + 1), original, NORTH, x, y + 1);
+		} else if (current.getWest() == Tile.ROAD && from != WEST
+				&& getTile(x - 1, y) != null) {
+			meepleOnCompletedRoad(player, getTile(x - 1, y), original, EAST, x - 1, y);
+		}
+	}
 
 	public boolean isValidMove(int x, int y, Tile toPlace) {
 		boolean bordering = false;
