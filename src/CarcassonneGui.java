@@ -67,4 +67,7 @@ public class CarcassonneGui {
 			scorePanel.repaint();
 		}
 	}
+	public boolean isGameOver() {
+		return game.isGameOver();
+	}
 }

@@ -65,9 +65,9 @@ public class BoardPanel extends JPanel implements MouseListener{
 		int i = (x / TILE_WIDTH) + (board.TABLE_MID - 5);
 		int j = (y - DEFAULT_HEIGHT) / (-TILE_WIDTH) + (board.TABLE_MID - 5);
 		
-		gui.placeTile(i, j);
-		
 		System.out.println("You Clicked At: " + i + "|" + j);
+		
+		gui.placeTile(i, j);
 	}
 
 	@Override
