@@ -18,7 +18,7 @@ public class HandPanel extends JPanel {
 		if (gui.getGame().getTileInHand() != null) {
 			hand = gui.getGame().getTileInHand();
 			Image image = new ImageIcon(hand.getFileName()).getImage();
-			G.drawImage(image, 600-gui.getBoardPanel().TILE_WIDTH, 0, null);
+			G.drawImage(image, 0, 0, null);
 		}
 	}
 

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 
@@ -8,10 +9,10 @@ public class CarcassonneFrame extends JFrame {
 
 	public CarcassonneFrame(CarcassonneGui gui) {
 		this.gui = gui;
-		setLayout(new BorderLayout());
-		add(gui.getBoardPanel(), BorderLayout.NORTH);
-		add(gui.getScorePanel(), BorderLayout.SOUTH);
-		add(gui.getHandPanel(), BorderLayout.SOUTH);
+		setLayout(new GridBagLayout());
+		add(gui.getBoardPanel(), new GBC(0, 0, 3, 2).setFill(GBC.BOTH).setWeight(1, 1));
+		add(gui.getScorePanel(), new GBC(1, 2, 2, 1).setFill(GBC.BOTH).setWeight(1, 1));
+		add(gui.getHandPanel(), new GBC(0, 2, 1, 1).setFill(GBC.BOTH).setWeight(1, 1));
 		pack();
 	}
 

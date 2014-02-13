@@ -14,7 +14,7 @@ public class BoardPanel extends JPanel implements MouseListener{
 	private CarcassonneGui gui;
 	
 	private static final int DEFAULT_WIDTH = 900;
-	private static final int DEFAULT_HEIGHT = 630;
+	private static final int DEFAULT_HEIGHT = 540;
 	//Each Tile image is 90x90, so the height is the same as the width.
 	public static final int TILE_WIDTH = 90;
 	
