@@ -33,6 +33,13 @@ public class BoardPanel extends JPanel implements MouseListener {
 		this.add(addFollower);
 		AddFollowerAction addFollowerAction = new AddFollowerAction();
 		addFollower.addActionListener(addFollowerAction);
+		
+		JButton rotate = new JButton("Rotate tile");
+		this.add(rotate);
+		RotateAction rotateAction = new RotateAction();
+		rotate.addActionListener(rotateAction);
+		
+		
 		this.gui = gui;
 		addMouseListener(this);
 	}
@@ -139,8 +146,15 @@ public class BoardPanel extends JPanel implements MouseListener {
 	private class AddFollowerAction implements ActionListener {
 
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("BUTTON CLICKED");
 			board.placeMeeple(board.getLastX(), board.getLastY(), 0, 0);
+			// gui.addFollower();
+		}
+	}
+	
+	private class RotateAction implements ActionListener {
+
+		public void actionPerformed(ActionEvent event) {
+			gui.rotateTile();
 			// gui.addFollower();
 		}
 	}

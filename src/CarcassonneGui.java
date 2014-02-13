@@ -60,6 +60,11 @@ public class CarcassonneGui {
 
 		}
 	}
+	
+	public void rotateTile(){
+		game.rotateTile();
+		
+	}
 	public boolean isGameOver() {
 		return game.isGameOver();
 	}
