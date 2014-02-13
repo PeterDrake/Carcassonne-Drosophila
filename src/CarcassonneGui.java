@@ -45,14 +45,10 @@ public class CarcassonneGui {
 	public static void main(String[] args) {
 		new CarcassonneGui().run();
 	}
+	
 	public void placeTile(int i, int j) {
-		if(game.getBoard().isValidMove(i, j, game.getTileInHand()))
-		{
-			System.out.println("Legal Move At: " + i + "|" + j);
-			game.getBoard().placeTile(game.getTileInHand(), i, j);
+		if(game.placeTile(i, j)) {
 			boardPanel.repaint();
 		}
-		
-		System.out.println("Not Legal Move");
 	}
 }

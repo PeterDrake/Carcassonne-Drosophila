@@ -99,7 +99,18 @@ public class Carcassonne {
 	}
 	
 
-	
+	public boolean placeTile(int i, int j) {
+		if(board.isValidMove(i, j, tileInHand) && tilesLeft != 0)
+		{
+			System.out.println("Legal Move At: " + i + "|" + j);
+			board.placeTile(tileInHand, i, j);
+			drawTile();
+			return true;
+		} else if (tilesLeft != 0) {
+			System.out.println("Not Legal Move");			
+		} else System.out.println("Game is over!");
+		return false;
+	}
 
 	//passes along player to GUI
 	public Player[] getPlayers(){
@@ -153,6 +164,10 @@ public class Carcassonne {
 	
 	public static void main(String[] args) {
 		new Carcassonne();
+	}
+
+	public int getTilesLeft() {
+		return tilesLeft;
 	}
 
 }
