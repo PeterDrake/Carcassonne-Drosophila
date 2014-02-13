@@ -5,9 +5,14 @@ import org.junit.Before;
 public class RoadCompletionTest {
 	
 	private Board b;
+	private Player[] players;
 	@Before
 	public void setup(){
-		b = new Board();
+		players = new Player[5];
+		for(int i = 0; i < 5; i++){
+			players[i] = new Player(i);
+		}
+		b = new Board(players);
 	}
 	
 	@Test
@@ -97,5 +102,50 @@ public class RoadCompletionTest {
 		b.placeTile(new Tile(Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD), 3, 5);
 		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.XROAD), 3, 4);
 		assertTrue(b.roadCompleted());
+	}
+	
+	@Test
+	public void testRoadScoring(){
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.CLOISTER), 3, 3);
+		b.placeTile(new Tile(Tile.ROAD, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE), 3, 4);
+		b.getTile(3, 4).addMeeple(0, 1);
+		b.scoreRoad();
+		//player 0 should get 2 points for this road
+		assertEquals(2, b.getPlayer(0).getScore());
+	}
+	
+	public void testRoadScoringTwo(){
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.CLOISTER), 3, 3);
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD), 5, 4);
+		b.placeTile(new Tile(Tile.ROAD, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE, Tile.CASTLE), 5, 5);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.ROAD), 4, 4);
+		b.getTile(3, 4).addMeeple(0,3);
+		b.getTile(5,4).addMeeple(1,7);
+		assertEquals(5, b.getPlayer(0).getScore());
+		assertEquals(5, b.getPlayer(1).getScore());
+	}
+	
+	public void testXroadScoring(){
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.XROAD), 3, 3);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.ROAD), 4, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD), 5, 4);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.XROAD), 5, 5);
+		b.getTile(5,4).addMeeple(0,7);
+		assertEquals(5, b.getPlayer(0).getScore());
+	}
+	
+	public void testMultipleMeepleroadScoring(){
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.XROAD), 3, 3);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD), 3, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.ROAD, Tile.FIELD, Tile.ROAD, Tile.ROAD), 4, 4);
+		b.placeTile(new Tile(Tile.FIELD, Tile.FIELD, Tile.ROAD, Tile.ROAD, Tile.FIELD), 5, 4);
+		b.placeTile(new Tile(Tile.CASTLE, Tile.CASTLE, Tile.CASTLE, Tile.ROAD, Tile.CASTLE), 6, 5);
+		b.placeTile(new Tile(Tile.ROAD, Tile.ROAD, Tile.ROAD, Tile.FIELD, Tile.XROAD), 5, 5);
+		b.getTile(5,4).addMeeple(0,7);
+		b.getTile(6, 5).addMeeple(1, 7);
+		assertEquals(5, b.getPlayer(0).getScore());
+		assertEquals(2, b.getPlayer(1).getScore());
 	}
 }

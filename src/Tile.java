@@ -115,6 +115,11 @@ public class Tile {
 	public int getCenter() {
 		return quadrant[8];
 	}
+	
+	//this method has the same functionality as the getNorth, etc but without having to know which quadrant ahead of time
+	public int getTerrainAt(int q){
+		return quadrant[q];
+	}
 
 	// getter for the Orientation field
 	public int Orientation() {

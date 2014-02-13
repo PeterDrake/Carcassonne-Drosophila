@@ -44,7 +44,7 @@ public class Carcassonne {
 		Tile initialTile = new Tile(Tile.FIELD, Tile.CASTLE, Tile.FIELD,
 				Tile.ROAD, Tile.FIELD, Tile.FIELD, Tile.FIELD, Tile.ROAD,
 				Tile.ROAD, "city1rwe.png");
-		board = new Board();
+		board = new Board(players);
 		board.placeTile(initialTile, 72, 72);
 
 		System.out.println("you have placed the tile with characteristics: "
